@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "outDir": "./lib/"
+    },
+    "include": ["src/**/*", "precios.ts"],
+    "exclude": ["node_modules", "src/tests/**/*"]
+}
