@@ -1,3 +1,8 @@
+/**
+ * @author Raul Galindo
+ * @description Entry point for precios page
+ */
+
 /* Reglas de negocio:
 1- El costo de los timbres es cero si el número de timbres gratis es mayor que 
 la cantidad de timbres necesarios, en caso contrario, el costo se calcula
