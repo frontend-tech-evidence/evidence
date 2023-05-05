@@ -1,4 +1,4 @@
-class Capacitacion {
+export class Capacitacion {
     public costoUsuarioAdicionalCapacitacion: number | string
     public costoHoraVirtualAdicionalCapacitacion: number
     public diasDeAsesorCapacitacion: number | string

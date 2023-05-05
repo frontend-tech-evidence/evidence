@@ -3,51 +3,38 @@ export class Usuario {
     public cantidadUsuariosGratisIncluidos: number
     public costoUsuarioExtra: number
     public costoUsuarioExtraDespuesDeLimite?: number
-    public rangoPrincipalLimiteDeUsuarios: number
+    public rangoPrincipalLimiteDeUsuarios?: number
 
-    constructor(
+    calcularCosto(
         cantidadUsuariosRequeridos: number,
         cantidadUsuariosGratisIncluidos: number,
         costoUsuarioExtra: number,
-        costoUsuarioExtraDespuesDeLimite: number,
+        costoUsuarioExtraDespuesDeLimite?: number,
         rangoPrincipalLimiteDeUsuarios?: number
-    ) {
-        this.cantidadUsuariosRequeridos = cantidadUsuariosRequeridos
-        this.cantidadUsuariosGratisIncluidos = cantidadUsuariosGratisIncluidos
-        this.costoUsuarioExtra = costoUsuarioExtra
-        this.costoUsuarioExtraDespuesDeLimite = costoUsuarioExtraDespuesDeLimite
-        this.rangoPrincipalLimiteDeUsuarios = rangoPrincipalLimiteDeUsuarios
-    }
-
-    calcularCosto() {
-        if (typeof this.rangoPrincipalLimiteDeUsuarios === 'number') {
-            if (
-                this.cantidadUsuariosRequeridos >
-                this.rangoPrincipalLimiteDeUsuarios
-            ) {
+    ): number {
+        if (typeof rangoPrincipalLimiteDeUsuarios === 'number') {
+            if (cantidadUsuariosRequeridos > rangoPrincipalLimiteDeUsuarios) {
                 const cantidadUsuariosAntesDelRango =
-                    this.rangoPrincipalLimiteDeUsuarios -
-                    this.cantidadUsuariosGratisIncluidos
+                    rangoPrincipalLimiteDeUsuarios -
+                    cantidadUsuariosGratisIncluidos
 
                 const cantidadUsuariosDespuesDelRango =
-                    this.cantidadUsuariosRequeridos -
-                    this.rangoPrincipalLimiteDeUsuarios
+                    cantidadUsuariosRequeridos - rangoPrincipalLimiteDeUsuarios
 
                 const costoDespuesDelLimite =
                     cantidadUsuariosDespuesDelRango *
-                    this.costoUsuarioExtraDespuesDeLimite
+                    costoUsuarioExtraDespuesDeLimite
 
                 const costoAntesDelLimite =
-                    cantidadUsuariosAntesDelRango * this.costoUsuarioExtra
+                    cantidadUsuariosAntesDelRango * costoUsuarioExtra
 
                 return costoDespuesDelLimite + costoAntesDelLimite
             }
         }
 
         const costoUsuarios = Math.abs(
-            (this.cantidadUsuariosGratisIncluidos -
-                this.cantidadUsuariosRequeridos) *
-                this.costoUsuarioExtra
+            (cantidadUsuariosGratisIncluidos - cantidadUsuariosRequeridos) *
+                costoUsuarioExtra
         )
 
         return costoUsuarios

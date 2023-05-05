@@ -3,10 +3,13 @@
  * @description Test for
  */
 
+import { Package } from './index'
+
 describe('Calcular el precio total', () => {
     describe('Paquete Grow', () => {
-        it('Costo de memebresia mensual se agrega al total correctamente', () => {
-            expect(1).toBe(1)
+        it('Costo total del paquete grow correcto', () => {
+            const pkg = new Package('grow', 2990, 14, 2, 29)
+            expect(pkg.calcularCostoTotal()).toBe(33891)
         })
     })
 })

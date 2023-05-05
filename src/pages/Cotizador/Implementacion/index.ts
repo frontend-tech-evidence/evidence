@@ -1,15 +1,21 @@
-class Implementacion {
+export class Implementacion {
     public costoActivacion: number
     public costoCapacitacion: number
     public costoMigracion: number
+    public pagoImplementacionMensual: boolean
 
-    constructor(
+    calcularCostoTotalImplementacion(
         costoActivacion: number,
+        costoMigracion: number,
         costoCapacitacion: number,
-        costoMigracion: number
-    ) {
-        this.costoActivacion = costoActivacion
-        this.costoCapacitacion = costoCapacitacion
-        this.costoMigracion = costoMigracion
+        pagoImplementacionMensual: boolean = false
+    ): number {
+        const costoTotalImplementacion =
+            costoActivacion + costoMigracion + costoCapacitacion
+
+        if (pagoImplementacionMensual === false) {
+            return costoTotalImplementacion * 0.9
+        }
+        return costoTotalImplementacion
     }
 }
