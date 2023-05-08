@@ -1,4 +1,5 @@
 export const paqueteGrow = {
+    nombre: this.name,
     // nombre: this.name,
     // costoBase: this.costoBase,
     // // limites disponibles
