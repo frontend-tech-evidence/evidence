@@ -5,7 +5,7 @@
         "jsx": "react",
         "noImplicitAny": false,
         "sourceMap": true,
-        "outDir": "./lib/"
+        "outDir": "./dist/"
     },
     "include": ["src/**/*", "precios.ts"],
     "exclude": ["node_modules", "src/tests/**/*"]

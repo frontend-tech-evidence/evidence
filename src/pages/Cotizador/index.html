@@ -1,54 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                darkMode: 'class',
+            }
+        </script>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
-
-    <style>
-        /*
+        <style>
+            /*
     Elimina los botones para incrementar y decremental el numero del input number.
 */
-        input[type='number']::-webkit-inner-spin-button,
-        input[type='number']::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+            input[type='number']::-webkit-inner-spin-button,
+            input[type='number']::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
 
-        input[type='number'] {
-            -moz-appearance: textfield;
-        }
-    </style>
+            input[type='number'] {
+                -moz-appearance: textfield;
+            }
+        </style>
+    </head>
 
-</head>
+    <body>
+        <!-------------------- Header Start Here -------------------->
 
-<body>
-    <!-------------------- Header Start Here -------------------->
+        <!-------------------- Main Start Here -------------------->
+        <main>
+            <h1 class="text-[4rem] font-bold">Pruebas</h1>
+            <p class="spanImplementacion text-xl"></p>
+            <p class="spanMembresia text-xl"></p>
+            <p class="spanTimbre text-xl"></p>
+            <p class="spanUsuario text-xl"></p>
+        </main>
 
-    <!-------------------- Main Start Here -------------------->
-    <main>
-        <h1 class="text-[4rem] font-bold">Pruebas</h1>
-        <p class="spanImplementacion text-xl"></p>
-        <p class="spanMembresia text-xl"></p>
-        <p class="spanTimbre text-xl"></p>
-        <p class="spanUsuario text-xl"></p>
-    </main>
+        <!-------------------- Scripts Start Here -------------------->
+        <script type="module" src="/dist/pages/Cotizador/index.js"></script>
 
-    <!-------------------- Scripts Start Here -------------------->
-    <script type="module" src="/lib/index.js"></script>
-
-    <!-------------------- Footer Start Here -------------------->
-
-</body>
-
+        <!-------------------- Footer Start Here -------------------->
+    </body>
 </html>
