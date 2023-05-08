@@ -2,7 +2,7 @@
  * @author Raul Galindo
  * @description Test for
  */
-import { CostoPaquete } from '../core/queries/CostoPaquete';
+import { CostoPaquete } from '../core/queries/CostoPaquete.js';
 describe('Calcular el costo total del paquete', () => {
     const costoPaquete = new CostoPaquete();
     // Por falta de tiempo, faltan ahondar en los test,

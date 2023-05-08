@@ -2,7 +2,6 @@
     "compilerOptions": {
         "target": "es6",
         "moduleResolution": "node",
-        "jsx": "react",
         "noImplicitAny": false,
         "sourceMap": true,
         "outDir": "./dist/"

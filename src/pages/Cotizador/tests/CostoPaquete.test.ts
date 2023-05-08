@@ -3,7 +3,7 @@
  * @description Test for
  */
 
-import { CostoPaquete } from '../core/queries/CostoPaquete'
+import { CostoPaquete } from '../core/queries/CostoPaquete.js'
 
 describe('Calcular el costo total del paquete', () => {
     const costoPaquete = new CostoPaquete()
@@ -14,14 +14,13 @@ describe('Calcular el costo total del paquete', () => {
 
     describe('🎨 Paquete Grow', () => {
         it('Todo en meses', () => {
-            const costoImplementacion =
-                costoPaquete.calcularCostoImplementacion(
-                    9800,
-                    9800,
-                    9800,
-                    10,
-                    true
-                )
+            const costoImplementacion = costoPaquete.calcularCostoImplementacion(
+                9800,
+                9800,
+                9800,
+                10,
+                true
+            )
             const costoMembresia = costoPaquete.calcularCostoMembresia(
                 2990,
                 1,
@@ -57,14 +56,13 @@ describe('Calcular el costo total del paquete', () => {
 
     describe('🎨 Paquete Manufacturing', () => {
         it('Todo en meses y en dolares', () => {
-            const costoImplementacion =
-                costoPaquete.calcularCostoImplementacion(
-                    19000,
-                    49000,
-                    29000,
-                    10,
-                    true
-                )
+            const costoImplementacion = costoPaquete.calcularCostoImplementacion(
+                19000,
+                49000,
+                29000,
+                10,
+                true
+            )
 
             const costoMembresia = costoPaquete.calcularCostoMembresia(
                 14990,

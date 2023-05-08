@@ -1,7 +1,7 @@
 export const paquetes = {
     grow: {
-        Nombre: 'grow',
-        CostoBase: 299,
+        Nombre: 'Grow',
+        CostoBase: 2999,
         UsuariosGratis: 1,
         // costos
         costoActivacion: 9800,
@@ -28,7 +28,7 @@ export const paquetes = {
         AlmacenamientoAdicional: '0,500 USD por GB al mes sobre 20 GB máximo 2.5 Terabytes',
     },
     institutional: {
-        Nombre: 'institutional',
+        Nombre: 'Institutional',
         CostoBase: 8990,
         UsuariosGratis: 1,
         // costos
@@ -56,7 +56,7 @@ export const paquetes = {
         AlmacenamientoAdicional: '0,500 USD por GB al mes sobre 20 GB máximo 2.5 Terabytes',
     },
     manufacturing: {
-        Nombre: 'manufacturing',
+        Nombre: 'Manufacturing',
         CostoBase: 14990,
         UsuariosGratis: 1,
         // costos
@@ -84,7 +84,7 @@ export const paquetes = {
         AlmacenamientoAdicional: '0,500 USD por GB al mes sobre 100 MB sin límites',
     },
     enterprise: {
-        Nombre: 'enterprise',
+        Nombre: 'Enterprise',
         CostoBase: 49990,
         UsuariosGratis: 1,
         // costos

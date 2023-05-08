@@ -1,7 +1,7 @@
 export const paquetes = {
     grow: {
-        Nombre: 'grow',
-        CostoBase: 299,
+        Nombre: 'Grow',
+        CostoBase: 2999,
         UsuariosGratis: 1,
 
         // costos
@@ -36,7 +36,7 @@ export const paquetes = {
     },
 
     institutional: {
-        Nombre: 'institutional',
+        Nombre: 'Institutional',
         CostoBase: 8990,
         UsuariosGratis: 1,
 
@@ -72,7 +72,7 @@ export const paquetes = {
     },
 
     manufacturing: {
-        Nombre: 'manufacturing',
+        Nombre: 'Manufacturing',
         CostoBase: 14990,
         UsuariosGratis: 1,
 
@@ -108,7 +108,7 @@ export const paquetes = {
     },
 
     enterprise: {
-        Nombre: 'enterprise',
+        Nombre: 'Enterprise',
         CostoBase: 49990,
         UsuariosGratis: 1,
 
