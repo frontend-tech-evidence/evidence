@@ -1,0 +1,1 @@
+{"version":3,"file":"SendPackageInfo.js","sourceRoot":"","sources":["../../src/data/SendPackageInfo.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAEH,OAAO,EAAE,QAAQ,EAAE,MAAM,eAAe,CAAA;AAExC,MAAM,UAAU,eAAe,CAAC,aAAqB;IACjD,MAAM,WAAW,GAAG,QAAQ,CAAC,aAAa,CAAC,CAAA;IAC3C,OAAO,WAAW,CAAA;AACtB,CAAC"}
