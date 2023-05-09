@@ -99,10 +99,3 @@ export function calcularCostoSegundoAño(
 ): number {
     return Math.round(costoMembresia + costoTimbres + costoUsuarios)
 }
-
-export function calcularCostoConCambioDivisa(
-    cantidadACambiar: number,
-    precioMoneda: number
-): number {
-    return Math.round(cantidadACambiar / precioMoneda)
-}

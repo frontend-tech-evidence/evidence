@@ -45,7 +45,4 @@ export function calcularCostoPrimerAño(costoImplementacion, costoMembresia, cos
 export function calcularCostoSegundoAño(costoMembresia, costoTimbres, costoUsuarios) {
     return Math.round(costoMembresia + costoTimbres + costoUsuarios);
 }
-export function calcularCostoConCambioDivisa(cantidadACambiar, precioMoneda) {
-    return Math.round(cantidadACambiar / precioMoneda);
-}
 //# sourceMappingURL=CostoPaquete.js.map

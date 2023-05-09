@@ -9,8 +9,9 @@ import {
     calcularCostoTimbres,
     calcularCostoUsuario,
     calcularCostoPrimerAño,
-    calcularCostoConCambioDivisa,
 } from '../core/CostoPaquete.js'
+
+import { cambiarDivisa } from '../core/Divisa.js'
 
 describe('Calcular el costo total del paquete', () => {
     // Por falta de tiempo, faltan ahondar en los test,
@@ -64,7 +65,7 @@ describe('Calcular el costo total del paquete', () => {
 
             const costoUsuarios = calcularCostoUsuario(1, 1, 829, true, 499, 49)
             expect(
-                calcularCostoConCambioDivisa(
+                cambiarDivisa(
                     calcularCostoPrimerAño(
                         costoImplementacion,
                         costoMembresia,

@@ -1,5 +1,5 @@
-import { calcularCostoPrimerAño, calcularCostoImplementacion, calcularCostoMembresia, calcularCostoTimbres, calcularCostoUsuario, calcularCostoSegundoAño, } from '../pages/Cotizador/core/CostoPaquete.js';
-import { paquetes } from '../data/Paquetes.js';
+import { calcularCostoPrimerAño, calcularCostoImplementacion, calcularCostoMembresia, calcularCostoTimbres, calcularCostoUsuario, calcularCostoSegundoAño, } from '../../pages/Cotizador/core/CostoPaquete.js';
+import { paquetes } from '../../data/Paquetes.js';
 class HeaderTable extends HTMLElement {
     constructor() {
         super();
@@ -40,8 +40,7 @@ class HeaderTable extends HTMLElement {
             <div class="flex flex-col items-center gap-y-1 px-4">
                 <!-- Etiqueta de precio normal -->
                 <div class="flex flex-row items-center justify-center text-gray-900 dark:text-white">
-                    <span class="text-4xl font-bold leading-6 text-black">$${costoPrimerAño}</span>
-                    <span class="ml-1 text-sm leading-6 text-gray-600">${monedaSeleccionada}</span>
+                    <span class="text-[2.1rem] font-bold leading-6 text-black">$${costoPrimerAño}</span>                    
                     <span class="ml-1 text-sm leading-6 text-gray-600">/${modalidadDePagos}</span>
                 </div>
 
@@ -51,8 +50,7 @@ class HeaderTable extends HTMLElement {
                         cuando quieras renovar
                         el 2° año te costara:</span>
                     <div class="flex flex-row items-center text-gray-900 dark:text-white">
-                        <span class="text-lg font-bold leading-6 text-black">$${costoSegundoAño}</span>
-                        <span class="ml-1 text-sm leading-6 text-gray-600">${monedaSeleccionada}</span>
+                        <span class="text-lg font-bold leading-6 text-black">$${costoSegundoAño}</span>                        
                         <span class="ml-1 text-sm leading-6 text-gray-600">/${modalidadDePagos}</span>                            
                     </div>
 

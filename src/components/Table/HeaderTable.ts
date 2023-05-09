@@ -1,25 +1,68 @@
-import { calcularCostoPrimerAño, calcularCostoImplementacion, calcularCostoMembresia, calcularCostoTimbres, calcularCostoUsuario, calcularCostoSegundoAño, } from '../pages/Cotizador/core/CostoPaquete.js';
-import { paquetes } from '../data/Paquetes.js';
+import {
+    calcularCostoPrimerAño,
+    calcularCostoImplementacion,
+    calcularCostoMembresia,
+    calcularCostoTimbres,
+    calcularCostoUsuario,
+    calcularCostoSegundoAño,
+} from '../../pages/Cotizador/core/CostoPaquete.js'
+
+import { cambiarDivisa } from '../../pages/Cotizador/core/Divisa.js'
+import { paquetes } from '../../data/Paquetes.js'
+
 class HeaderTable extends HTMLElement {
     constructor() {
-        super();
-        const nombre = this.getAttribute('nombre');
-        const paquete = paquetes[nombre];
-        const costoImplementacion = calcularCostoImplementacion(paquete.costoActivacion, paquete.costoMigracion, paquete.costoCapacitacion, paquete.descuentoPorUnPago);
-        const costoMembresia = calcularCostoMembresia(paquete.costoBase, paquete.mesesDeRegalo);
-        const costoTimbres = calcularCostoTimbres(1, // timbres requeridos
-        paquete.timbresGratisIncluidos, paquete.costoTimbreExtra);
-        const costoUsuarios = calcularCostoUsuario(1, // cantidad requerida de usuarios
-        paquete.usuariosGratisIncluidos, paquete.costoUsuarioExtra);
-        const costoPrimerAño = calcularCostoPrimerAño(costoImplementacion, costoMembresia, costoTimbres, costoUsuarios)
+        super()
+
+        const nombre = this.getAttribute('nombre')
+        const paquete = paquetes[nombre]
+
+        const costoImplementacion = calcularCostoImplementacion(
+            paquete.costoActivacion,
+            paquete.costoMigracion,
+            paquete.costoCapacitacion,
+            paquete.descuentoPorUnPago
+        )
+
+        const costoMembresia = calcularCostoMembresia(
+            paquete.costoBase,
+            paquete.mesesDeRegalo
+        )
+
+        const costoTimbres = calcularCostoTimbres(
+            1, // timbres requeridos
+            paquete.timbresGratisIncluidos,
+            paquete.costoTimbreExtra
+        )
+
+        const costoUsuarios = calcularCostoUsuario(
+            1, // cantidad requerida de usuarios
+            paquete.usuariosGratisIncluidos,
+            paquete.costoUsuarioExtra
+        )
+
+        const costoPrimerAño = calcularCostoPrimerAño(
+            costoImplementacion,
+            costoMembresia,
+            costoTimbres,
+            costoUsuarios
+        )
             .toLocaleString()
-            .replace(/\./g, ',');
-        const costoSegundoAño = calcularCostoSegundoAño(costoMembresia, costoTimbres, costoUsuarios)
+            .replace(/\./g, ',')
+
+        const costoSegundoAño = calcularCostoSegundoAño(
+            costoMembresia,
+            costoTimbres,
+            costoUsuarios
+        )
             .toLocaleString()
-            .replace(/\./g, ',');
-        const monedaSeleccionada = 'mxn';
-        const modalidadDePagos = 'mes';
+            .replace(/\./g, ',')
+
+        const monedaSeleccionada = 'mxn'
+        const modalidadDePagos = 'mes'
+
         // const costoConCambioDivisa = cambiarDivisa()
+
         // Render HTML
         this.innerHTML = `
         <!-- Titulo -->
@@ -40,8 +83,7 @@ class HeaderTable extends HTMLElement {
             <div class="flex flex-col items-center gap-y-1 px-4">
                 <!-- Etiqueta de precio normal -->
                 <div class="flex flex-row items-center justify-center text-gray-900 dark:text-white">
-                    <span class="text-4xl font-bold leading-6 text-black">$${costoPrimerAño}</span>
-                    <span class="ml-1 text-sm leading-6 text-gray-600">${monedaSeleccionada}</span>
+                    <span class="text-[2.1rem] font-bold leading-6 text-black">$${costoPrimerAño}</span>                    
                     <span class="ml-1 text-sm leading-6 text-gray-600">/${modalidadDePagos}</span>
                 </div>
 
@@ -51,8 +93,7 @@ class HeaderTable extends HTMLElement {
                         cuando quieras renovar
                         el 2° año te costara:</span>
                     <div class="flex flex-row items-center text-gray-900 dark:text-white">
-                        <span class="text-lg font-bold leading-6 text-black">$${costoSegundoAño}</span>
-                        <span class="ml-1 text-sm leading-6 text-gray-600">${monedaSeleccionada}</span>
+                        <span class="text-lg font-bold leading-6 text-black">$${costoSegundoAño}</span>                        
                         <span class="ml-1 text-sm leading-6 text-gray-600">/${modalidadDePagos}</span>                            
                     </div>
 
@@ -80,18 +121,20 @@ class HeaderTable extends HTMLElement {
                     </div>
                 </div>
             </div>
-        `;
+        `
     }
+
     /**
      * Runs each time the element is appended to or moved in the DOM
      */
-    connectedCallback() { }
+    connectedCallback() {}
+
     /**
      * Runs when the element is removed from the DOM
      */
-    disconnectedCallback() { }
+    disconnectedCallback() {}
 }
+
 if ('customElements' in window) {
-    customElements.define('header-table', HeaderTable);
+    customElements.define('header-table', HeaderTable)
 }
-//# sourceMappingURL=HeaderTable.js.map
