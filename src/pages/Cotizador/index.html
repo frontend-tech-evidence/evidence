@@ -1,1704 +1,1133 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
 
-        <script src="https://cdn.tailwindcss.com"></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-        <script>
-            tailwind.config = {
-                darkMode: 'class',
-            }
-        </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        <style>
-            /*
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        /*
     Elimina los botones para incrementar y decremental el numero del input number.
 */
-            input[type='number']::-webkit-inner-spin-button,
-            input[type='number']::-webkit-outer-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-            input[type='number'] {
-                -moz-appearance: textfield;
-            }
-        </style>
-    </head>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
 
-    <body>
-        <!-------------------- Header Start Here -------------------->
+<body>
+    <!-------------------- Header Start Here -------------------->
 
-        <!-------------------- Main Start Here -------------------->
-        <main>
-            <!-- Calculadora de precios -->
-            <div
-                id="tabla-paquetes"
-                class="flex flex-col overflow-x-auto px-6 pb-8"
-                style="scrollbar-width: thin; scrollbar-color: gray darkgray"
-            >
-                <!---------------------- Filters Bar ---------------------->
-                <div class="flex gap-x-8 bg-white px-4 py-8 text-sm">
-                    <number-input
-                        texto="Usuarios:"
-                        inputName="usuarios"
-                    ></number-input>
+    <!-------------------- Main Start Here -------------------->
+    <main>
+        <!-- Calculadora de precios -->
+        <div id="tabla-paquetes" class="flex flex-col px-6 pb-8 "
+            style="scrollbar-width: thin; scrollbar-color: gray darkgray">
 
-                    <number-input
-                        texto="Empleados:"
-                        inputName="empleados"
-                    ></number-input>
+            <!-- Filter bar + Cards Paquetes -->
+            <div class="sticky top-0 left-0 transform z-[2] bg-white w-[114.2rem]">
+                <!-- Filter bar  -->
+                <div class="flex flex-col gap-y-4 px-4 py-4 text-sm">
+                    <button class="flex leading- text-blue-500">
+                        <span>Filtros de cotizador </span>
+                        <svg class="ml-0.5 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
 
-                    <number-input
-                        texto="Sucursales:"
-                        inputName="sucursales"
-                    ></number-input>
+                    <!---------------------- Filters Bar ---------------------->
+                    <div class="flex gap-x-8 bg-white">
+                        <number-input texto="Usuarios:" inputName="usuarios"></number-input>
 
-                    <number-input
-                        texto="Timbres:"
-                        inputName="timbres"
-                    ></number-input>
+                        <number-input texto="Empleados:" inputName="empleados"></number-input>
 
-                    <checkbox-input
-                        texto="Pago de implementaciones:"
-                        textoTrue="12 pagos"
-                        textoFalse="1 pago"
-                        inputName="implementacion"
-                        textDescunto="-10% aplicado al total"
-                    ></checkbox-input>
+                        <number-input texto="Sucursales:" inputName="sucursales"></number-input>
 
-                    <checkbox-input
-                        texto="Pago de membresia:"
-                        textoTrue="Mensual"
-                        textoFalse="Anual"
-                        inputName="implementacion"
-                        textDescunto="-10% aplicado al total"
-                    ></checkbox-input>
+                        <number-input texto="Timbres:" inputName="timbres"></number-input>
+
+                        <checkbox-input texto="Pago de implementaciones:" textoTrue="12 pagos" textoFalse="1 pago"
+                            inputName="implementacion" textDescunto="-10% aplicado al total"></checkbox-input>
+
+                        <checkbox-input texto="Pago de membresia:" textoTrue="Mensual" textoFalse="Anual"
+                            inputName="implementacion" textDescunto="-10% aplicado al total"></checkbox-input>
+                    </div>
                 </div>
 
+                <!-- Tarjetas -->
                 <table>
                     <!---------------------- Tarjetas Paquete ---------------------->
-                    <tr class="flex h-fit w-full flex-row">
+                    <tr class="flex h-fit w-[114.2rem] flex-row">
                         <!-------------- Espacio en blanco -------------->
-                        <th>
-                            <item-header-table texto=""></item-header-table>
+                        <th class="flex items-end pb-4 border-[0.5px] border-white bg-white">
+                            <item-header-table texto="Caracteristica:"></item-header-table>
                         </th>
 
                         <!-------------- Paquete Grow -------------->
                         <th
-                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-x border-t border-gray-900/10 bg-white py-10 shadow-sm"
-                        >
+                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm">
                             <header-table nombre="grow"></header-table>
                         </th>
 
                         <!-------------- Paquete Institutional -------------->
                         <th
-                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm"
-                        >
+                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm">
                             <header-table nombre="institutional"></header-table>
                         </th>
 
                         <!-------------- Paquete Manufacturing -------------->
                         <th
-                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm"
-                        >
+                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm">
                             <header-table nombre="manufacturing"></header-table>
                         </th>
 
                         <!-------------- Paquete Enterprise -------------->
                         <th
-                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm"
-                        >
+                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm">
                             <header-table nombre="enterprise"></header-table>
                         </th>
 
                         <!-------------- Paquete International Enterprise -------------->
                         <th
-                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm"
-                        >
+                            class="flex w-[20rem] flex-col justify-center gap-y-0 rounded-t-sm border-r border-t border-gray-900/10 bg-white py-10 shadow-sm">
                             <header-table nombre="enterprise"></header-table>
                         </th>
-                    </tr>
-
-                    <!---------------- Precio por usuario | Row ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-y">
-                        <th class="flex border-x border-gray-900/10 py-4">
-                            <item-header-table
-                                texto="Precio por usuario"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoUsuarioExtra"
-                            ></item-table>
-                        </td>
-                    </tr>
-
-                    <!---------------- Usuarios gratis incluidos | Row ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th class="flex border-x border-gray-900/10 py-4">
-                            <item-header-table
-                                texto="Usuarios gratis incluidos"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="usuariosGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="usuariosGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="usuariosGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="usuariosGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="usuariosGratisIncluidos"
-                            ></item-table>
-                        </td>
-                    </tr>
-
-                    <!---------------- Limite de usuarios | Row ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Limite de usuarios"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="maxUsuarios"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="maxUsuarios"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="maxUsuarios"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="maxUsuarios"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Sucursales permitidas | Row ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Sucursales permitidas"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="maxSucursales"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="maxSucursales"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="maxSucursales"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="maxSucursales"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Limite de empleados | Row ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Limite de empleados"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="maxEmpleados"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="maxEmpleados"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="maxEmpleados"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="maxEmpleados"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Timbres incluidos sin costo | Row ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Timbres incluidos </br> sin costo"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="timbresGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="timbresGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="timbresGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="timbresGratisIncluidos"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!-------------------------------- Modulos de paquetes -------------------------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Modulos incluidos en el paquete"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!-------------------------------- Ver detalles de precios -------------------------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Ver detalles de precios"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!---------------- Tarifa de mensualidad de membresia ---------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-50 py-2 text-sm text-blue-500"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Tarifa de mensualidad de membresia"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!---------------- Precio base de la versión  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Precio base de la versión"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoBase"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoBase"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoBase"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoBase"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------------- Tarifa de implementacion  ---------------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-50 py-2 text-sm text-blue-500"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Tarifa de implementacion"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!---------------- Activación y configuración  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Activación y configuración"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoActivacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoActivacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoActivacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoActivacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Capacitaciones online  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Capacitaciones online"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Migración de catálogos y saldos  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Migración de catálogos y saldos"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoMigracion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoMigracion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoMigracion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoMigracion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Precio de implementación (Activación,capacitación y migración)  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Precio de implementación (Activación,capacitación y migración)"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------------- Costo total  ---------------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-50 py-2 text-sm text-blue-500"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Costo total"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!---------------- Facturacion Anual  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Facturación anual del precio base de la versión (Incluye usuarios adicionales)"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="faltaLogica"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!-------------------------------- Servicio y soporte incluido -------------------------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Servicio y soporte incluido"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!---------------- Horario de atención  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Horario de atención"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="horarioAtencion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="horarioAtencion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="horarioAtencion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="horarioAtencion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Up time SLA  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Up time SLA"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="upTime"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="upTime"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="upTime"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="upTime"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Tiempo promedio de respuesta  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Tiempo promedio de respuesta"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="tiempoPromedioRespuesta"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="tiempoPromedioRespuesta"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="tiempoPromedioRespuesta"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="tiempoPromedioRespuesta"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Soporte via  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Soporte via"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="soporteVia"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="soporteVia"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="soporteVia"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="soporteVia"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!-------------------------------- Capacitaciones incluidas -------------------------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Capacitaciones incluidas"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!---------------- Usuarios incluidos en la capacitación  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Usuarios incluidos en la capacitación"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="usuariosIncluidosCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="usuariosIncluidosCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="usuariosIncluidosCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="usuariosIncluidosCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Horas incluidas de capacitación e implementación  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Horas incluidas de capacitación e implementación"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="horasIncluidasCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="horasIncluidasCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="horasIncluidasCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="horasIncluidasCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Horas disponibles por semana  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Horas disponibles por semana"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="horasDisponibleSemanalesCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="horasDisponibleSemanalesCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="horasDisponibleSemanalesCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="horasDisponibleSemanalesCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Hora virtual adicional de capacitación o consultoría  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Costo por hora virtual adicional de capacitación o consultoría"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoHoraVirtualAdicionalCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoHoraVirtualAdicionalCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoHoraVirtualAdicionalCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoHoraVirtualAdicionalCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Costo por capacitación a usuarios adicionales  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Costo por capacitación a usuario adicional"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoCapacitacionUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoCapacitacionUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoCapacitacionUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoCapacitacionUsuarioExtra"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Profesionales enfocados en tu éxito  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Profesionales enfocados en tu éxito"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="diasDeAsesorCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="diasDeAsesorCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="diasDeAsesorCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="diasDeAsesorCapacitacion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!-------------------------------- Otros -------------------------------->
-                    <tr
-                        class="flex h-fit w-[114.2rem] items-center justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white"
-                    >
-                        <th>
-                            <subheader-table
-                                titulo="Otros"
-                                paquete="grow"
-                            ></subheader-table>
-                        </th>
-                    </tr>
-
-                    <!---------------- Servicio de generación XML:  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Costo por servicio de generación XML:"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoGeneracionXML"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoGeneracionXML"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoGeneracionXML"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoGeneracionXML"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Número de asesorías de especialistas  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Número de asesorías de especialistas"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="cantAsesoriasEspecializadas"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="cantAsesoriasEspecializadas"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="cantAsesoriasEspecializadas"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="cantAsesoriasEspecializadas"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Almacenamiento adicional  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Almacenamiento adicional"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="almacenamientoAdicional"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="almacenamientoAdicional"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="almacenamientoAdicional"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="almacenamientoAdicional"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Horas de desarrollo incluidas sin costo extra  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Horas de desarrollo incluidas sin costo extra"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="horasDesarrolloExtras"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="horasDesarrolloExtras"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="horasDesarrolloExtras"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="horasDesarrolloExtras"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
-                    </tr>
-
-                    <!---------------- Upgrade de versión  ---------------->
-                    <tr class="flex h-fit w-[114.2rem] border-b">
-                        <th
-                            class="flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-header-table
-                                texto="Costo por Upgrade de versión"
-                            ></item-header-table>
-                        </th>
-
-                        <!-------------- Paquete Grow -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="grow"
-                                atributo="costoUpgradeVersion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Institutional -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="institutional"
-                                atributo="costoUpgradeVersion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Manufacturing -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="manufacturing"
-                                atributo="costoUpgradeVersion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete Enterprise -------------->
-                        <td
-                            class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm"
-                        >
-                            <item-table
-                                paquete="enterprise"
-                                atributo="costoUpgradeVersion"
-                            ></item-table>
-                        </td>
-
-                        <!-------------- Paquete International Enterprise -------------->
                     </tr>
                 </table>
             </div>
 
-            <!----------------------------------------------------------------------------->
-        </main>
+            <table>
+                <!---------------- Precio por usuario | Row ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-y">
+                    <th class="sticky left-0 flex border-x border-gray-900/10 py-4 bg-white">
+                        <item-header-table texto="Precio por usuario"></item-header-table>
+                    </th>
 
-        <!-------------------- Scripts Start Here -------------------->
-        <script
-            type="module"
-            src="/dist/components/Table/HeaderTable.js"
-        ></script>
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoUsuarioExtra"></item-table>
+                    </td>
 
-        <script
-            type="module"
-            src="/dist/components/Table/SubheaderTable.js"
-        ></script>
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoUsuarioExtra"></item-table>
+                    </td>
 
-        <script
-            type="module"
-            src="/dist/components/Table/ItemHeaderTable.js"
-        ></script>
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoUsuarioExtra"></item-table>
+                    </td>
 
-        <script
-            type="module"
-            src="/dist/components/Table/ItemTable.js"
-        ></script>
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoUsuarioExtra"></item-table>
+                    </td>
 
-        <script
-            type="module"
-            src="/dist/components/Input/NumberInput.js"
-        ></script>
+                    <!-------------- Paquete International Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoUsuarioExtra"></item-table>
+                    </td>
+                </tr>
 
-        <script
-            type="module"
-            src="/dist/components/Input/CheckboxInput.js"
-        ></script>
+                <!---------------- Usuarios gratis incluidos | Row ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th class="sticky left-0 flex border-x border-gray-900/10 py-4 bg-white">
+                        <item-header-table texto="Usuarios gratis incluidos"></item-header-table>
+                    </th>
 
-        <!-------------------- Footer Start Here -------------------->
-    </body>
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="usuariosGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="usuariosGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="usuariosGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="usuariosGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="usuariosGratisIncluidos"></item-table>
+                    </td>
+                </tr>
+
+                <!---------------- Limite de usuarios | Row ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Limite de usuarios"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="maxUsuarios"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="maxUsuarios"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="maxUsuarios"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="maxUsuarios"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Sucursales permitidas | Row ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Sucursales permitidas"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="maxSucursales"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="maxSucursales"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="maxSucursales"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="maxSucursales"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Limite de empleados | Row ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Limite de empleados"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="maxEmpleados"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="maxEmpleados"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="maxEmpleados"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="maxEmpleados"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Timbres incluidos sin costo | Row ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Timbres incluidos </br> sin costo"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="timbresGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="timbresGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="timbresGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="timbresGratisIncluidos"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!-------------------------------- Modulos de paquetes -------------------------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Modulos incluidos en el paquete" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!-------------------------------- Ver detalles de precios -------------------------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Ver detalles de precios" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!---------------- Tarifa de mensualidad de membresia ---------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-50 py-2 text-sm text-blue-500">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Tarifa de mensualidad de membresia" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!---------------- Precio base de la versión  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Precio base de la versión"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoBase"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoBase"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoBase"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoBase"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------------- Tarifa de implementacion  ---------------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-50 py-2 text-sm text-blue-500">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Tarifa de implementacion" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!---------------- Activación y configuración  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Activación y configuración"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoActivacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoActivacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoActivacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoActivacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Capacitaciones online  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Capacitaciones online"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Migración de catálogos y saldos  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Migración de catálogos y saldos"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoMigracion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoMigracion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoMigracion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoMigracion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Precio de implementación (Activación,capacitación y migración)  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table
+                            texto="Precio de implementación (Activación,capacitación y migración)"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------------- Costo total  ---------------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-50 py-2 text-sm text-blue-500">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Costo total" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!---------------- Facturacion Anual  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table
+                            texto="Facturación anual del precio base de la versión (Incluye usuarios adicionales)"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="faltaLogica"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!-------------------------------- Servicio y soporte incluido -------------------------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Servicio y soporte incluido" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!---------------- Horario de atención  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Horario de atención"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="horarioAtencion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="horarioAtencion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="horarioAtencion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="horarioAtencion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Up time SLA  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Up time SLA"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="upTime"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="upTime"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="upTime"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="upTime"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Tiempo promedio de respuesta  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Tiempo promedio de respuesta"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="tiempoPromedioRespuesta"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="tiempoPromedioRespuesta"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="tiempoPromedioRespuesta"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="tiempoPromedioRespuesta"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Soporte via  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Soporte via"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="soporteVia"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="soporteVia"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="soporteVia"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="soporteVia"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!-------------------------------- Capacitaciones incluidas -------------------------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Capacitaciones incluidas" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!---------------- Usuarios incluidos en la capacitación  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Usuarios incluidos en la capacitación"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="usuariosIncluidosCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="usuariosIncluidosCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="usuariosIncluidosCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="usuariosIncluidosCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Horas incluidas de capacitación e implementación  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Horas incluidas de capacitación e implementación"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="horasIncluidasCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="horasIncluidasCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="horasIncluidasCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="horasIncluidasCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Horas disponibles por semana  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Horas disponibles por semana"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="horasDisponibleSemanalesCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional"
+                            atributo="horasDisponibleSemanalesCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing"
+                            atributo="horasDisponibleSemanalesCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="horasDisponibleSemanalesCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Hora virtual adicional de capacitación o consultoría  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table
+                            texto="Costo por hora virtual adicional de capacitación o consultoría"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoHoraVirtualAdicionalCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional"
+                            atributo="costoHoraVirtualAdicionalCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing"
+                            atributo="costoHoraVirtualAdicionalCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoHoraVirtualAdicionalCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Costo por capacitación a usuarios adicionales  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Costo por capacitación a usuario adicional"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoCapacitacionUsuarioExtra"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoCapacitacionUsuarioExtra"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoCapacitacionUsuarioExtra"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoCapacitacionUsuarioExtra"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Profesionales enfocados en tu éxito  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Profesionales enfocados en tu éxito"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="diasDeAsesorCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="diasDeAsesorCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="diasDeAsesorCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="diasDeAsesorCapacitacion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!-------------------------------- Otros -------------------------------->
+                <tr
+                    class="flex h-fit w-[114.2rem] lg:items-center lg:justify-center border border-blue-500 bg-blue-500 py-2 text-sm text-white">
+                    <th class="sticky left-1/3 lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                        <subheader-table titulo="Otros" paquete="grow"></subheader-table>
+                    </th>
+                </tr>
+
+                <!---------------- Servicio de generación XML:  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Costo por servicio de generación XML:"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoGeneracionXML"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoGeneracionXML"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoGeneracionXML"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoGeneracionXML"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Número de asesorías de especialistas  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Número de asesorías de especialistas"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="cantAsesoriasEspecializadas"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="cantAsesoriasEspecializadas"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="cantAsesoriasEspecializadas"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="cantAsesoriasEspecializadas"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Almacenamiento adicional  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Almacenamiento adicional"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="almacenamientoAdicional"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="almacenamientoAdicional"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="almacenamientoAdicional"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="almacenamientoAdicional"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Horas de desarrollo incluidas sin costo extra  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Horas de desarrollo incluidas sin costo extra"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="horasDesarrolloExtras"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="horasDesarrolloExtras"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="horasDesarrolloExtras"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="horasDesarrolloExtras"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+
+                <!---------------- Upgrade de versión  ---------------->
+                <tr class="flex h-fit w-[114.2rem] border-b">
+                    <th
+                        class="sticky left-0 flex min-w-[14rem] max-w-sm flex-col justify-center gap-y-0 border-x border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-header-table texto="Costo por Upgrade de versión"></item-header-table>
+                    </th>
+
+                    <!-------------- Paquete Grow -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="grow" atributo="costoUpgradeVersion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Institutional -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="institutional" atributo="costoUpgradeVersion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Manufacturing -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="manufacturing" atributo="costoUpgradeVersion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete Enterprise -------------->
+                    <td
+                        class="flex w-[20rem] max-w-sm flex-col items-center justify-center gap-y-0 border-r border-gray-900/10 bg-white py-4 shadow-sm">
+                        <item-table paquete="enterprise" atributo="costoUpgradeVersion"></item-table>
+                    </td>
+
+                    <!-------------- Paquete International Enterprise -------------->
+                </tr>
+            </table>
+        </div>
+
+        <!----------------------------------------------------------------------------->
+    </main>
+
+    <!-------------------- Scripts Start Here -------------------->
+    <script type="module" src="/dist/components/Table/HeaderTable.js"></script>
+
+    <script type="module" src="/dist/components/Table/SubheaderTable.js"></script>
+
+    <script type="module" src="/dist/components/Table/ItemHeaderTable.js"></script>
+
+    <script type="module" src="/dist/components/Table/ItemTable.js"></script>
+
+    <script type="module" src="/dist/components/Input/NumberInput.js"></script>
+
+    <script type="module" src="/dist/components/Input/CheckboxInput.js"></script>
+
+    <!-------------------- Footer Start Here -------------------->
+</body>
+
 </html>
