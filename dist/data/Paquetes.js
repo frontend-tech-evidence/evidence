@@ -28,13 +28,13 @@ export const paquetes = {
         costoRazonSocial: 'Paquetes de 1000',
         costoUsuarioExtraRazonSocial: 199,
         // soporte
-        costoHoraVirtualAdicionalCapacitacion: 'No disponible',
-        tiempoPromedioRespuesta: '1 a 16 horas',
+        costoHoraVirtualAdicionalCapacitacion: 948,
+        tiempoPromedioRespuesta: 'Menos de 24 horas',
         soporteVia: 'Email, Whatsapp y Videollamada',
-        horarioAtencion: 'Lunes a Viernes de </br> 09:00 AM a 07:00 PM',
-        upTime: '99.49%',
+        horarioAtencion: 'Lunes a Viernes de </br> 09:00 AM a 01:00 PM',
+        upTime: '99.00%',
         cantAsesoriasEspecializadas: 2,
-        almacenamientoAdicional: '0,500 USD por GB al mes sobre </br> 20 GB máximo 2.5 Terabytes',
+        almacenamientoAdicional: '0,500 USD por GB al mes sobre </br> 20 GB máximo 100 GB',
         // otro
         horasDesarrolloExtras: 'No incluido',
         costoUpgradeVersion: 16421,
@@ -47,7 +47,7 @@ export const paquetes = {
         mesesDeRegalo: 1,
         descuentoPorUnPago: 10,
         timbresGratisIncluidos: 100,
-        costoUsuarioExtra: 499,
+        costoUsuarioExtra: 716,
         costoGeneracionXML: '$0.87 mxn c/u',
         // costos
         costoActivacion: 19000,
@@ -86,7 +86,7 @@ export const paquetes = {
         mesesDeRegalo: 1,
         descuentoPorUnPago: 10,
         timbresGratisIncluidos: 100,
-        costoUsuarioExtra: 499,
+        costoUsuarioExtra: 829,
         costoUsuarioExtraDespuesDeLimite: 499,
         costoGeneracionXML: '$0.87 mxn c/u',
         // costos
@@ -127,7 +127,7 @@ export const paquetes = {
         mesesDeRegalo: 1,
         descuentoPorUnPago: 10,
         timbresGratisIncluidos: 100,
-        costoUsuarioExtra: 499,
+        costoUsuarioExtra: 998,
         costoUsuarioExtraDespuesDeLimite: 499,
         costoGeneracionXML: '$0.87 mxn c/u',
         // costos
@@ -154,48 +154,52 @@ export const paquetes = {
         soporteVia: 'Email, Whatsapp y Videollamada',
         horarioAtencion: 'Lunes a Sabado 24/7 **',
         upTime: '99.49%',
-        cantAsesoriasEspecializadas: 4,
+        cantAsesoriasEspecializadas: 6,
         almacenamientoAdicional: '0,500 USD por GB al mes sobre </br> 1 TB sin límites',
         // otro
-        horasDesarrolloExtras: 'Opcional',
+        horasDesarrolloExtras: 'Incluido',
         costoUpgradeVersion: 1098501,
     },
-    // internationalEnterprise: {
-    //     nombre: 'internationalEnterprise',
-    //     iconName: 'international-enterprise-icon.svg',
-    //     costoBase: 49990,
-    //     usuariosGratisIncluidos: 1,
-    //     mesesDeRegalo: 1,
-    //     descuentoPorUnPago: 10,
-    //     timbresGratisIncluidos: 100,
-    //     costoUsuarioExtra: 499,
-    //     costoUsuarioExtraDespuesDeLimite: 499,
-    //     // costos
-    //     costoActivacion: 449980,
-    //     costoCapacitacion: 449980,
-    //     costoMigracion: 295541,
-    //     costoTimbreExtra: 1,
-    //     // limites disponibles
-    //     maxUsuarios: 499,
-    //     maxSucursales: 100,
-    //     maxEmpleados: 999,
-    //     // capacitacion
-    //     diasDeAsesorCapacitacion:
-    //         'Arquitectro de extio asignado para garantizar la transformacion',
-    //     usuariosIncluidosCapacitacion: 20,
-    //     horasIncluidasCapacitacion: 120,
-    //     horasDisponibleSemanalesCapacitacion: 10,
-    //     // razon social
-    //     costoRazonSocial: 'Paquetes de 1000',
-    //     costoUsuarioExtraRazonSocial: 399,
-    //     // soporte
-    //     costoHoraVirtualAdicionalCapacitacion: '$948',
-    //     tiempoPromedioRespuesta: '15 minutos a 12 horas',
-    //     horarioAtencion: 'Lunes a Sabado 24/7 **',
-    //     upTime: '99.49%',
-    //     cantAsesoriasEspecializadas: 4,
-    //     almacenamientoAdicional:
-    //         '0,500 USD por GB al mes sobre 1 TB sin límites',
-    // },
+    internationalEnterprise: {
+        nombre: 'internationalEnterprise',
+        iconName: 'international-enterprise-icon.svg',
+        costoBase: 'Contacte a ventas',
+        usuariosGratisIncluidos: 'Contacte a ventas',
+        mesesDeRegalo: 1,
+        descuentoPorUnPago: 10,
+        timbresGratisIncluidos: 'Contacte a ventas',
+        costoUsuarioExtra: 'Contacte a ventas',
+        costoUsuarioExtraDespuesDeLimite: 'Contacte a ventas',
+        costoGeneracionXML: 'Contacte a ventas',
+        // costos
+        costoActivacion: 'Contacte a ventas',
+        costoCapacitacion: 'Contacte a ventas',
+        costoMigracion: 'Contacte a ventas',
+        costoTimbreExtra: 1,
+        // limites disponibles
+        maxUsuarios: 'Ilimitados',
+        maxSucursales: 'Ilimitadas',
+        maxEmpleados: 'Ilimitados',
+        // capacitacion
+        diasDeAsesorCapacitacion: 'Contacte a ventas',
+        usuariosIncluidosCapacitacion: 'Contacte a ventas',
+        horasIncluidasCapacitacion: 'Contacte a ventas',
+        horasDisponibleSemanalesCapacitacion: 'Contacte a ventas',
+        costoCapacitacionUsuarioExtra: 'Contacte a ventas',
+        // razon social
+        costoRazonSocial: 'Contacte a ventas',
+        costoUsuarioExtraRazonSocial: 'Contacte a ventas',
+        // soporte
+        costoHoraVirtualAdicionalCapacitacion: 'Contacte a ventas',
+        tiempoPromedioRespuesta: '15 minutos a 8 horas',
+        soporteVia: 'Email, Whatsapp y Videollamada',
+        horarioAtencion: 'Lunes a Sabado 24/7 **',
+        upTime: '99.68%',
+        cantAsesoriasEspecializadas: 'Contacte a ventas',
+        almacenamientoAdicional: 'Contacte a ventas',
+        // otro
+        horasDesarrolloExtras: 'Contacte a ventas',
+        costoUpgradeVersion: 'Contacte a ventas',
+    },
 };
 //# sourceMappingURL=Paquetes.js.map
