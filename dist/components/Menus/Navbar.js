@@ -1,11 +1,11 @@
-class FullBlured extends HTMLElement {
+class Navbar extends HTMLElement {
     constructor() {
         super();
         const texto = this.getAttribute('texto');
         const titulo = this.getAttribute('titulo');
         // Render HTML
         this.innerHTML = ` 
-          
+         
         `;
     }
     /**
@@ -18,6 +18,6 @@ class FullBlured extends HTMLElement {
     disconnectedCallback() { }
 }
 if ('customElements' in window) {
-    customElements.define('full-blured', FullBlured);
+    customElements.define('navbar-menu', Navbar);
 }
-//# sourceMappingURL=FullBlured.js.map
+//# sourceMappingURL=Navbar.js.map

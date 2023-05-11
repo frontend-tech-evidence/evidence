@@ -196,7 +196,7 @@ export const paquetes = {
     },
 
     internationalEnterprise: {
-        nombre: 'internationalEnterprise',
+        nombre: 'International Enterprise',
         iconName: 'international-enterprise-icon.svg',
         costoBase: 'Contacte a ventas',
         usuariosGratisIncluidos: 'Contacte a ventas',

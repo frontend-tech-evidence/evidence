@@ -3,6 +3,8 @@ class ItemHeaderTable extends HTMLElement {
         super()
 
         const texto = this.getAttribute('texto')
+        const textColor = this.getAttribute('textColor')
+        const smallTextColor = this.getAttribute('smallTextColor')
 
         // Render HTML
         this.innerHTML = ` 

@@ -15,6 +15,12 @@ class HeaderTable extends HTMLElement {
         super()
 
         const nombre = this.getAttribute('nombre')
+        const textColor = this.getAttribute('textColor')
+        const smallTextColor = this.getAttribute('smallTextColor')
+        const textColorBtn2 = this.getAttribute('textColorBtn2')
+        const bgColorBtn1 = this.getAttribute('bgColorBtn1')
+        const borderColorBtn2 = this.getAttribute('borderColorBtn2')
+        const textColorBtn1 = this.getAttribute('textColorBtn1')
         const paquete = paquetes[nombre]
 
         const costoImplementacion = calcularCostoImplementacion(
@@ -64,49 +70,48 @@ class HeaderTable extends HTMLElement {
         // const costoConCambioDivisa = cambiarDivisa()
 
         // Render HTML
-        this.innerHTML = `
+        this.innerHTML = `       
         <!-- Titulo -->
         <div class="mb-4 flex flex-col items-center gap-y-1 px-4">
-            
-        
-        <img class="w-16" src="/src/assets/${paquete.iconName}" alt="Icono de paquete ${paquete.nombre}"/>
+                    
+        <img class="w-10" src="/src/assets/evidence-logos/${paquete.iconName}" alt="Icono de paquete ${paquete.nombre}"/>
 
                 <div
-                    class="flex items-center justify-center gap-x-1 text-center text-lg font-semibold leading-6 text-gray-900">
-                    <div class="pt-2">                      
+                    class="flex items-center justify-center gap-x-1 text-center text-sm font-semibold leading-6 text-${textColor}">
+                    <div class="pt-2">                                              
                         <span>${paquete.nombre}</span>                        
                     </div>
                 </div>
             </div>
 
             <!-- Precios -->
-            <div class="flex flex-col items-center gap-y-1 px-4">
+            <div class="flex flex-col items-center gap-y-1 px-4">               
                 <!-- Etiqueta de precio normal -->
-                <div class="flex flex-row items-center justify-center text-gray-900 dark:text-white">
-                    <span class="text-[2.1rem] font-bold leading-6 text-black">$${costoPrimerAño}</span>                    
-                    <span class="ml-1 text-sm leading-6 text-gray-600">/${modalidadDePagos}</span>
+                <div class="flex flex-row items-center justify-center text-${textColor}">
+                    <span class="text-[1.9rem] font-bold leading-6 text-${textColor}">$${costoPrimerAño}</span>                    
+                    <span class="ml-1 text-xs leading-6 text-${smallTextColor}">/${modalidadDePagos}</span>
                 </div>
 
                 <!-- Etiqueta de precio promocional -->
                 <div class="mt-4 flex flex-col items-center gap-y-2">
-                    <span class="w-[13rem] text-xs font-bold leading-6 text-black underline">Contrata hoy y
+                    <span class="w-[13rem] text-xs font-bold leading-6 text-${textColor} underline">Contrata hoy y
                         cuando quieras renovar
                         el 2° año te costara:</span>
-                    <div class="flex flex-row items-center text-gray-900 dark:text-white">
-                        <span class="text-lg font-bold leading-6 text-black">$${costoSegundoAño}</span>                        
-                        <span class="ml-1 text-sm leading-6 text-gray-600">/${modalidadDePagos}</span>                            
+                    <div class="flex flex-row items-center text-${textColor}">
+                        <span class="text-md font-bold leading-6 text-${textColor}">$${costoSegundoAño}</span>                        
+                        <span class="ml-1 text-xs leading-6 text-${smallTextColor}">/${modalidadDePagos}</span>                            
                     </div>
 
                     <!-- CTA -->
                     <div class="mt-3 flex flex-col gap-y-2">
                         <a id=btnCotizar${paquete.nombre} href="http://127.0.0.1:8000/contratar-paquete"
-                            class="rounded-full bg-blue-600 px-8 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-blue-600 hover:ring-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">Obtener
+                            class="rounded-full bg-${bgColorBtn1} px-8 py-2 text-sm font-semibold text-${textColorBtn1} shadow-sm ring-1 ring-inset ring-blue-600 hover:ring-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">Obtener
                             Cotización Online
                             <span aria-hidden="true">
                                 &rarr;</span></a>
 
                         <a id="btnContratar${paquete.nombre}" href="http://127.0.0.1:8000/contratar-paquete"
-                            class="border-600 rounded-full border px-8 py-2 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-inset ring-blue-600 hover:ring-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">O
+                            class="border-${borderColorBtn2} rounded-full border px-8 py-2 text-sm font-semibold text-${textColorBtn2} shadow-sm ring-1 ring-inset hover:ring-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">O
                             contrate ahora
                             <span aria-hidden="true">
                                 &rarr;</span></a>
