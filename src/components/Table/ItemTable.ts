@@ -11,7 +11,7 @@ class ItemTable extends HTMLElement {
         // Render HTML
         this.innerHTML = ` 
            <span class="flex justify-center items-center text-center text-gray-800 text-sm"> 
-           ${paqueteSeleccionado[atributo]}
+           ${paqueteSeleccionado[atributo]}         
         </span>
         `
     }

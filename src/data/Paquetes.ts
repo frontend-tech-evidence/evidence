@@ -8,7 +8,7 @@ export const paquetes = {
         descuentoPorUnPago: 10,
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 499,
-        costoGeneracionXML: '$1',
+        costoGeneracionXML: 1,
 
         // costos
         costoActivacion: 9800,
@@ -45,7 +45,7 @@ export const paquetes = {
 
         // otro
         horasDesarrolloExtras: 'No incluido',
-        costoUpgradeVersion: '$16,421',
+        costoUpgradeVersion: 16421,
     },
 
     institutional: {
@@ -57,7 +57,7 @@ export const paquetes = {
         descuentoPorUnPago: 10,
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 716,
-        costoGeneracionXML: '$1',
+        costoGeneracionXML: 1,
 
         // costos
         costoActivacion: 19000,
@@ -92,7 +92,7 @@ export const paquetes = {
         almacenamientoAdicional:
             '0,500 USD por GB al mes sobre </br> 20 GB máximo 2.5 Terabytes',
         horasDesarrolloExtras: 'Opcional',
-        costoUpgradeVersion: '$27,600',
+        costoUpgradeVersion: 27600,
     },
 
     manufacturing: {
@@ -105,7 +105,7 @@ export const paquetes = {
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 829,
         costoUsuarioExtraDespuesDeLimite: 499,
-        costoGeneracionXML: '$1',
+        costoGeneracionXML: 1,
 
         // costos
         costoActivacion: 19000,
@@ -142,7 +142,7 @@ export const paquetes = {
 
         // otro
         horasDesarrolloExtras: 'Opcional',
-        costoUpgradeVersion: '$40,000',
+        costoUpgradeVersion: 40000,
     },
 
     enterprise: {
@@ -155,7 +155,7 @@ export const paquetes = {
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 998,
         costoUsuarioExtraDespuesDeLimite: 499,
-        costoGeneracionXML: '$1',
+        costoGeneracionXML: 1,
 
         // costos
         costoActivacion: 449980,
@@ -192,7 +192,7 @@ export const paquetes = {
 
         // otro
         horasDesarrolloExtras: 'Incluido',
-        costoUpgradeVersion: '$1,098,501',
+        costoUpgradeVersion: 1098501,
     },
 
     internationalEnterprise: {
