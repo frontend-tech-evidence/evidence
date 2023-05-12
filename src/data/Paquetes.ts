@@ -8,7 +8,7 @@ export const paquetes = {
         descuentoPorUnPago: 10,
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 499,
-        costoGeneracionXML: '$0.87 mxn c/u',
+        costoGeneracionXML: '$1',
 
         // costos
         costoActivacion: 9800,
@@ -45,7 +45,7 @@ export const paquetes = {
 
         // otro
         horasDesarrolloExtras: 'No incluido',
-        costoUpgradeVersion: 16421,
+        costoUpgradeVersion: '$16,421',
     },
 
     institutional: {
@@ -57,7 +57,7 @@ export const paquetes = {
         descuentoPorUnPago: 10,
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 716,
-        costoGeneracionXML: '$0.87 mxn c/u',
+        costoGeneracionXML: '$1',
 
         // costos
         costoActivacion: 19000,
@@ -92,7 +92,7 @@ export const paquetes = {
         almacenamientoAdicional:
             '0,500 USD por GB al mes sobre </br> 20 GB máximo 2.5 Terabytes',
         horasDesarrolloExtras: 'Opcional',
-        costoUpgradeVersion: 27600,
+        costoUpgradeVersion: '$27,600',
     },
 
     manufacturing: {
@@ -105,7 +105,7 @@ export const paquetes = {
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 829,
         costoUsuarioExtraDespuesDeLimite: 499,
-        costoGeneracionXML: '$0.87 mxn c/u',
+        costoGeneracionXML: '$1',
 
         // costos
         costoActivacion: 19000,
@@ -142,7 +142,7 @@ export const paquetes = {
 
         // otro
         horasDesarrolloExtras: 'Opcional',
-        costoUpgradeVersion: 40000,
+        costoUpgradeVersion: '$40,000',
     },
 
     enterprise: {
@@ -155,7 +155,7 @@ export const paquetes = {
         timbresGratisIncluidos: 100,
         costoUsuarioExtra: 998,
         costoUsuarioExtraDespuesDeLimite: 499,
-        costoGeneracionXML: '$0.87 mxn c/u',
+        costoGeneracionXML: '$1',
 
         // costos
         costoActivacion: 449980,
@@ -181,7 +181,7 @@ export const paquetes = {
         costoUsuarioExtraRazonSocial: 399,
 
         // soporte
-        costoHoraVirtualAdicionalCapacitacion: '$948',
+        costoHoraVirtualAdicionalCapacitacion: 948,
         tiempoPromedioRespuesta: '15 minutos a 12 horas',
         soporteVia: 'Email, Whatsapp y Videollamada',
         horarioAtencion: 'Lunes a Sabado 24/7 **',
@@ -192,7 +192,7 @@ export const paquetes = {
 
         // otro
         horasDesarrolloExtras: 'Incluido',
-        costoUpgradeVersion: 1098501,
+        costoUpgradeVersion: '$1,098,501',
     },
 
     internationalEnterprise: {

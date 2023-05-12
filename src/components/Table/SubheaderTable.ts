@@ -2,21 +2,19 @@ class SubheaderTable extends HTMLElement {
     constructor() {
         super()
 
-        const paquete = this.getAttribute('paquete')
-        const paqueteCapitalized =
-            paquete.charAt(0).toUpperCase() + paquete.slice(1)
-
+        const id = this.getAttribute('id')
         const titulo = this.getAttribute('titulo')
+        const display = this.getAttribute('display')
 
         // Render HTML
         this.innerHTML = ` 
             <span
-                id="modulos${paqueteCapitalized}"
+                id="${id}"
                 class="flex justify-center font-bold leading-6"
             >
                 ${titulo}
                 <svg
-                    class="ml-0.5 w-4"
+                    class="ml-0.5 w-4 ${display}"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     aria-hidden="true"

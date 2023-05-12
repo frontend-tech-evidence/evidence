@@ -95,7 +95,6 @@ class HeaderTable extends HTMLElement {
                 <!-- Etiqueta de precio promocional -->
                 <div class="mt-4 flex flex-col items-center gap-y-2">
                     <span class="w-[13rem] text-xs font-bold leading-6 text-${textColor} underline">Contrata hoy y
-                        cuando quieras renovar
                         el 2° año te costara:</span>
                     <div class="flex flex-row items-center text-${textColor}">
                         <span class="text-md font-bold leading-6 text-${textColor}">$${costoSegundoAño}</span>                        
@@ -111,7 +110,7 @@ class HeaderTable extends HTMLElement {
                                 &rarr;</span></a>
 
                         <a id="btnContratar${paquete.nombre}" href="http://127.0.0.1:8000/contratar-paquete"
-                            class="border-${borderColorBtn2} rounded-full border px-8 py-2 text-sm font-semibold text-${textColorBtn2} shadow-sm ring-1 ring-inset hover:ring-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">O
+                            class="border-${borderColorBtn2} rounded-full capitalize border px-8 py-2 text-sm font-semibold text-${textColorBtn2} shadow-sm ring-1 ring-inset hover:ring-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">O
                             contrate ahora
                             <span aria-hidden="true">
                                 &rarr;</span></a>

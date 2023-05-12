@@ -1,14 +1,12 @@
-class SubheaderTable extends HTMLElement {
+class ItemModule extends HTMLElement {
     constructor() {
         super();
-        const id = this.getAttribute('id');
         const titulo = this.getAttribute('titulo');
         const display = this.getAttribute('display');
         // Render HTML
         this.innerHTML = ` 
-            <span
-                id="${id}"
-                class="flex justify-center font-bold leading-6"
+            <span             
+                class="flex justify-center leading-6"
             >
                 ${titulo}
                 <svg
@@ -36,6 +34,6 @@ class SubheaderTable extends HTMLElement {
     disconnectedCallback() { }
 }
 if ('customElements' in window) {
-    customElements.define('subheader-table', SubheaderTable);
+    customElements.define('item-module', ItemModule);
 }
-//# sourceMappingURL=SubheaderTable.js.map
+//# sourceMappingURL=ItemModule.js.map
